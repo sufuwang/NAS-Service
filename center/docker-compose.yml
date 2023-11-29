@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  nest-app:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      network: host
+    depends_on:
+      - redis-container
+    ports:
+      - '3000:3000'
+  redis-container:
+    image: redis
+    ports:
+      - '6379:6379'
+    volumes:
+      - ~/data/redis:/data
